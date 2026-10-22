@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>B3A core logic tests</title>
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0; padding: 32px 20px;
+    background: #0d1220; color: #eef2ff;
+    font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  main { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 20px; margin: 0 0 6px; }
+  p.intro { color: #93a0c0; margin: 0 0 20px; font-size: 13px; }
+  #summary {
+    display: inline-block; padding: 6px 12px; border-radius: 999px;
+    font-weight: 700; font-size: 13px; margin-bottom: 16px;
+    background: #1d2742; color: #eef2ff;
+  }
+  #summary.pass { background: rgba(53, 212, 154, .16); color: #35d49a; }
+  #summary.fail { background: rgba(255, 107, 107, .16); color: #ff6b6b; }
+  ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  li { padding: 10px 14px; border-radius: 10px; background: #161d31; border: 1px solid rgba(255,255,255,.08); }
+  li.pass::before { content: "PASS  "; color: #35d49a; font-weight: 700; font-size: 12px; letter-spacing: .08em; }
+  li.fail::before { content: "FAIL  "; color: #ff6b6b; font-weight: 700; font-size: 12px; letter-spacing: .08em; }
+  li.fail { border-color: rgba(255,107,107,.5); }
+  li small { display: block; color: #ffb3b3; margin-top: 4px; }
+  a { color: #ffb020; }
+</style>
+</head>
+<body>
+<main>
+  <h1>B3A core logic</h1>
+  <p class="intro">Pure-function checks for <code>js/core.js</code>. No build step, no dependencies. Open this page through a local HTTP server.</p>
+  <div id="summary">running…</div>
+  <ol id="results"></ol>
+  <p><a href="../index.html">← back to the app</a></p>
+</main>
+
+<script type="module">
+import {
+  buildHash,
+  formatClock,
+  haversineKm,
+  minutesUntil,
+  nearestStop,
+  normalizeEtas,
+  parseHash,
+  splitStopName,
+} from "../js/core.js";
+
+const results = [];
+const list = document.getElementById("results");
+
+function test(name, fn) {
+  try {
+    fn();
+    results.push({ name, ok: true });
+  } catch (err) {
+    results.push({ name, ok: false, message: err.message });
+  }
+}
+
+function eq(actual, expected, label = "") {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a !== e) throw new Error(`${label ? label + ": " : ""}expected ${e}, got ${a}`);
+}
+
+function ok(value, label = "") {
+  if (!value) throw new Error(label || "expected a truthy value");
+}
+
+const NOW = Date.parse("2026-10-22T10:00:00+08:00");
+
+test("minutesUntil floors partial minutes", () => {
+  eq(minutesUntil("2026-10-22T10:01:30+08:00", NOW), 1);
+  eq(minutesUntil("2026-10-22T10:00:30+08:00", NOW), 0);
+  eq(minutesUntil("2026-10-22T10:02:00+08:00", NOW), 2);
+});
+
+test("minutesUntil clamps past times to zero", () => {
+  eq(minutesUntil("2026-10-22T09:59:00+08:00", NOW), 0);
+});
+
+test("minutesUntil returns null for junk", () => {
+  eq(minutesUntil("not-a-date", NOW), null);
+});
+
+test("normalizeEtas filters direction and drops stale rows", () => {
+  const rows = [
+    { dir: "O", eta: "2026-10-22T10:10:00+08:00", eta_seq: 1, dest_tc: "深圳灣口岸" },
+    { dir: "I", eta: "2026-10-22T10:12:00+08:00", eta_seq: 1, dest_tc: "山景邨" },
+    { dir: "O", eta: "2026-10-22T09:55:00+08:00", eta_seq: 2 },
+    { dir: "O", eta: "2026-10-22T10:20:00+08:00", eta_seq: 3 },
+  ];
+  const etas = normalizeEtas(rows, "O", NOW);
+  eq(etas.map((e) => e.iso), [
+    "2026-10-22T10:10:00+08:00",
+    "2026-10-22T10:20:00+08:00",
+  ]);
+  eq(etas.map((e) => e.mins), [10, 20]);
+});
+
+test("normalizeEtas de-duplicates identical rows and sorts", () => {
+  const rows = [
+    { dir: "O", eta: "2026-10-22T10:30:00+08:00", eta_seq: 2 },
+    { dir: "O", eta: "2026-10-22T10:10:00+08:00", eta_seq: 1 },
+    { dir: "O", eta: "2026-10-22T10:30:00+08:00", eta_seq: 2 },
+  ];
+  eq(normalizeEtas(rows, "O", NOW).map((e) => e.seq), [1, 2]);
+});
+
+test("normalizeEtas can keep stale snapshot rows", () => {
+  const rows = [
+    { dir: "O", eta: "2026-10-22T09:30:00+08:00", eta_seq: 1 },
+    { dir: "O", eta: "2026-10-22T10:10:00+08:00", eta_seq: 2 },
+  ];
+  const etas = normalizeEtas(rows, "O", NOW, { dropStale: false });
+  eq(etas.length, 2);
+  eq(etas[0].mins, 0);
+});
+
+test("normalizeEtas ignores rows without a usable eta", () => {
+  const rows = [{ dir: "O", eta: "" }, { dir: "O" }, null, { dir: "O", eta: "bad" }];
+  eq(normalizeEtas(rows, "O", NOW), []);
+});
+
+test("splitStopName splits on the first comma", () => {
+  eq(splitStopName("Fu Tai Estate, Castle Peak Road"), ["Fu Tai Estate", "Castle Peak Road"]);
+  eq(splitStopName("Shenzhen Bay Port"), ["Shenzhen Bay Port", ""]);
+  eq(splitStopName(""), ["", ""]);
+});
+
+test("parseHash accepts only O/I and known shapes", () => {
+  eq(parseHash("#O/003261"), { dir: "O", stopId: "003261" });
+  eq(parseHash("#I/003262"), { dir: "I", stopId: "003262" });
+  eq(parseHash("#X/003261"), null);
+  eq(parseHash("#O/"), null);
+  eq(parseHash(""), null);
+  eq(buildHash("I", "003208"), "#I/003208");
+});
+
+test("haversineKm measures a known distance", () => {
+  const km = haversineKm({ lat: 22.4129, lng: 113.9822 }, { lat: 22.4129, lng: 113.9922 });
+  ok(km > 1.0 && km < 1.1, `expected about 1.03 km, got ${km}`);
+});
+
+test("nearestStop chooses the closest stop in either direction", () => {
+  const directions = {
+    O: {
+      stops: [
+        { id: "003261", lat: 22.4129, lng: 113.9822 },
+        { id: "003208", lat: 22.5050, lng: 113.9450 },
+      ],
+    },
+    I: {
+      stops: [{ id: "003262", lat: 22.4130, lng: 113.9823 }],
+    },
+  };
+  const best = nearestStop(directions, 22.4130, 113.9823);
+  eq(best.stop.id, "003262");
+  eq(best.dir, "I");
+  ok(best.km < 0.1, `expected under 100 m, got ${best.km.toFixed(3)} km`);
+});
+
+test("formatClock pins the Hong Kong timezone", () => {
+  const text = formatClock("2026-10-22T02:05:00Z", "en");
+  ok(/10:05/.test(text), `expected 10:05, got ${text}`);
+});
+
+for (const r of results) {
+  const li = document.createElement("li");
+  li.className = r.ok ? "pass" : "fail";
+  li.append(document.createTextNode(r.name));
+  if (!r.ok) {
+    const small = document.createElement("small");
+    small.textContent = r.message;
+    li.append(small);
+  }
+  list.append(li);
+}
+
+const passed = results.filter((r) => r.ok).length;
+const summary = document.getElementById("summary");
+summary.textContent = `${passed} / ${results.length} passed`;
+summary.className = passed === results.length ? "pass" : "fail";
+</script>
+</body>
+</html>

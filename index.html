@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-HK" data-lang="tc">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>B3A · 山景邨 → 深圳灣口岸</title>
+<meta name="description" content="城巴 B3A 實時到站：山景邨來往深圳灣口岸，可選站、定位最近車站、支援離線與安裝。">
+<meta name="theme-color" content="#0d1220">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://rt.data.gov.hk" crossorigin>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<main class="app">
+  <header class="hero">
+    <div class="hero-top">
+      <span class="badge">B3A</span>
+      <div class="lang-switch" role="group" aria-label="語言 / Language">
+        <button class="lang-btn" type="button" data-lang="tc" aria-pressed="true">繁</button>
+        <button class="lang-btn" type="button" data-lang="sc" aria-pressed="false">简</button>
+        <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+    <h1 id="routeTitle">山景邨 → 深圳灣口岸</h1>
+    <p class="tagline" id="tagline">城巴 · 實時到站</p>
+  </header>
+
+  <nav class="dir-tabs" role="tablist" aria-label="方向 / Direction">
+    <button class="dir-tab is-active" type="button" role="tab" data-dir="O" aria-selected="true">往 深圳灣口岸</button>
+    <button class="dir-tab" type="button" role="tab" data-dir="I" aria-selected="false" tabindex="-1">往 山景邨</button>
+  </nav>
+
+  <div class="quick-stops" id="quickStops" hidden></div>
+
+  <section class="stop-card">
+    <button class="stop-btn" id="stopBtn" type="button" aria-haspopup="dialog">
+      <span class="stop-btn-body">
+        <span class="stop-kicker" id="boardingLabel">上車站</span>
+        <span class="stop-title">
+          <span id="stopName">富泰邨</span>
+          <span class="stop-seq" id="stopSeq">第 14 站</span>
+          <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="stop-detail" id="stopDetail">青山公路</span>
+      </span>
+    </button>
+    <div class="stop-actions">
+      <button class="icon-btn" id="locateBtn" type="button" aria-label="定位最近車站" title="定位最近車站">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="7.5" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".65"/>
+          <path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button class="icon-btn" id="favBtn" type="button" aria-label="收藏此站" aria-pressed="false" title="收藏此站">
+        <span id="favIcon" aria-hidden="true">☆</span>
+      </button>
+    </div>
+  </section>
+
+  <div class="statusbar">
+    <div class="status" role="status" aria-live="polite">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">載入中…</span>
+    </div>
+    <button class="btn-ghost" id="refreshBtn" type="button">立即更新</button>
+  </div>
+
+  <ul class="eta-list" id="etaList" aria-label="到站時間"></ul>
+
+  <footer class="foot">
+    <p id="serviceNote">實時資料由城巴提供，僅供參考。</p>
+    <p id="footnote">資料來源：DATA.GOV.HK 城巴實時到站 API · 每 45 秒自動更新 · 時間為香港時間</p>
+  </footer>
+</main>
+
+<dialog id="stopDialog" aria-labelledby="dialogTitle">
+  <div class="sheet">
+    <header class="sheet-head">
+      <h2 id="dialogTitle">選擇車站</h2>
+      <button class="icon-btn" id="closeDialogBtn" type="button" aria-label="關閉">✕</button>
+    </header>
+    <div class="sheet-tools">
+      <input id="stopSearch" type="search" placeholder="搜尋車站…" autocomplete="off" aria-label="搜尋車站">
+      <button class="btn-ghost" id="locateInDialog" type="button">定位最近車站</button>
+    </div>
+    <ul class="stop-list" id="stopList"></ul>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<noscript>
+  <p class="noscript">此頁需要 JavaScript 才能顯示實時到站資料。 / This page needs JavaScript for live arrivals.</p>
+</noscript>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

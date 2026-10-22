@@ -1,0 +1,378 @@
+{
+  "route": "B3A",
+  "company": "CTB",
+  "source": "DATA.GOV.HK Citybus real-time API",
+  "directions": {
+    "O": {
+      "origin": {
+        "tc": "山景邨景麗樓, 石排頭路",
+        "sc": "山景邨景丽楼, 石排头路",
+        "en": "King Lai House Shan King Estate, Shek Pai Tau Road"
+      },
+      "dest": {
+        "tc": "深圳灣口岸",
+        "sc": "深圳湾口岸",
+        "en": "Shenzhen Bay Port"
+      },
+      "endpoint": {
+        "from": {
+          "tc": "山景邨",
+          "sc": "山景邨",
+          "en": "Shan King Estate"
+        },
+        "to": {
+          "tc": "深圳灣口岸",
+          "sc": "深圳湾口岸",
+          "en": "Shenzhen Bay Port"
+        }
+      },
+      "stops": [
+        {
+          "id": "003201",
+          "seq": 1,
+          "name": {
+            "tc": "山景邨景麗樓, 石排頭路",
+            "sc": "山景邨景丽楼, 石排头路",
+            "en": "King Lai House Shan King Estate, Shek Pai Tau Road"
+          },
+          "lat": 22.400959,
+          "lng": 113.966457
+        },
+        {
+          "id": "003202",
+          "seq": 2,
+          "name": {
+            "tc": "大興變電站, 石排頭路",
+            "sc": "大兴变电站, 石排头路",
+            "en": "Tai Hing Substation, Shek Pai Tau Road"
+          },
+          "lat": 22.400915,
+          "lng": 113.968843
+        },
+        {
+          "id": "003203",
+          "seq": 3,
+          "name": {
+            "tc": "台山商會小學, 石排頭路",
+            "sc": "台山商会小学, 石排头路",
+            "en": "Toi Shan Association Primary School, Shek Pai Tau Road"
+          },
+          "lat": 22.40124,
+          "lng": 113.971924
+        },
+        {
+          "id": "003204",
+          "seq": 4,
+          "name": {
+            "tc": "大興體育館, 震寰路",
+            "sc": "大兴体育馆, 震寰路",
+            "en": "Tai Hing Sports Centre, Tsun Wen Road"
+          },
+          "lat": 22.403548,
+          "lng": 113.972634
+        },
+        {
+          "id": "003256",
+          "seq": 5,
+          "name": {
+            "tc": "大興北休憩處, 青田路",
+            "sc": "大兴北休憩处, 青田路",
+            "en": "Tai Hing North Sitting-out Area, Tsing Tin Road"
+          },
+          "lat": 22.404896,
+          "lng": 113.968862
+        },
+        {
+          "id": "003257",
+          "seq": 6,
+          "name": {
+            "tc": "新圍苑, 田景路",
+            "sc": "新围苑, 田景路",
+            "en": "San Wai Court, Tin King Road"
+          },
+          "lat": 22.405392,
+          "lng": 113.964038
+        },
+        {
+          "id": "003258",
+          "seq": 7,
+          "name": {
+            "tc": "兆邦苑, 田景路",
+            "sc": "兆邦苑, 田景路",
+            "en": "Siu Pong Court, Tin King Road"
+          },
+          "lat": 22.407657,
+          "lng": 113.966036
+        },
+        {
+          "id": "003259",
+          "seq": 8,
+          "name": {
+            "tc": "寶田邨, 鳴琴路",
+            "sc": "宝田邨, 鸣琴路",
+            "en": "Po Tin Estate, Ming Kum Road"
+          },
+          "lat": 22.408834,
+          "lng": 113.967091
+        },
+        {
+          "id": "003752",
+          "seq": 9,
+          "name": {
+            "tc": "和田邨",
+            "sc": "和田邨",
+            "en": "Wo Tin Estate"
+          },
+          "lat": 22.41284,
+          "lng": 113.968639
+        },
+        {
+          "id": "003753",
+          "seq": 10,
+          "name": {
+            "tc": "NOVO LAND, 欣寶路",
+            "sc": "NOVO LAND, 欣宝路",
+            "en": "NOVO LAND, Yan Po Road"
+          },
+          "lat": 22.412258,
+          "lng": 113.970551
+        },
+        {
+          "id": "003754",
+          "seq": 11,
+          "name": {
+            "tc": "紫田村, 欣寶路",
+            "sc": "紫田村, 欣宝路",
+            "en": "Tsz Tin Tsuen, Yan Po Road"
+          },
+          "lat": 22.414425,
+          "lng": 113.973893
+        },
+        {
+          "id": "003207",
+          "seq": 12,
+          "name": {
+            "tc": "欣田邨, 青麟路",
+            "sc": "欣田邨, 青麟路",
+            "en": "Yan Tin Estate, Tsing Lun Road"
+          },
+          "lat": 22.414225,
+          "lng": 113.977135
+        },
+        {
+          "id": "003350",
+          "seq": 13,
+          "name": {
+            "tc": "五柳路, 藍地交匯處",
+            "sc": "五柳路, 蓝地交汇处",
+            "en": "Ng Lau Road, Lam Tei Interchange"
+          },
+          "lat": 22.415551,
+          "lng": 113.979758
+        },
+        {
+          "id": "003261",
+          "seq": 14,
+          "name": {
+            "tc": "富泰邨, 青山公路",
+            "sc": "富泰邨, 青山公路",
+            "en": "Fu Tai Estate, Castle Peak Road"
+          },
+          "lat": 22.412949,
+          "lng": 113.98217
+        },
+        {
+          "id": "003208",
+          "seq": 15,
+          "name": {
+            "tc": "深圳灣口岸",
+            "sc": "深圳湾口岸",
+            "en": "Shenzhen Bay Port"
+          },
+          "lat": 22.501662,
+          "lng": 113.945188
+        }
+      ]
+    },
+    "I": {
+      "origin": {
+        "tc": "深圳灣口岸",
+        "sc": "深圳湾口岸",
+        "en": "Shenzhen Bay Port"
+      },
+      "dest": {
+        "tc": "山景邨景麗樓, 石排頭路",
+        "sc": "山景邨景丽楼, 石排头路",
+        "en": "King Lai House Shan King Estate, Shek Pai Tau Road"
+      },
+      "endpoint": {
+        "from": {
+          "tc": "深圳灣口岸",
+          "sc": "深圳湾口岸",
+          "en": "Shenzhen Bay Port"
+        },
+        "to": {
+          "tc": "山景邨",
+          "sc": "山景邨",
+          "en": "Shan King Estate"
+        }
+      },
+      "stops": [
+        {
+          "id": "003208",
+          "seq": 1,
+          "name": {
+            "tc": "深圳灣口岸",
+            "sc": "深圳湾口岸",
+            "en": "Shenzhen Bay Port"
+          },
+          "lat": 22.501662,
+          "lng": 113.945188
+        },
+        {
+          "id": "003262",
+          "seq": 2,
+          "name": {
+            "tc": "富泰商場, 青山公路",
+            "sc": "富泰商场, 青山公路",
+            "en": "Fu Tai Shopping Centre, Castle Peak Road"
+          },
+          "lat": 22.412486,
+          "lng": 113.982379
+        },
+        {
+          "id": "003351",
+          "seq": 4,
+          "name": {
+            "tc": "五柳路, 藍地交匯處",
+            "sc": "五柳路, 蓝地交汇处",
+            "en": "Ng Lau Road, Lam Tei Interchange"
+          },
+          "lat": 22.415445,
+          "lng": 113.979676
+        },
+        {
+          "id": "003209",
+          "seq": 5,
+          "name": {
+            "tc": "欣田邨, 青麟路",
+            "sc": "欣田邨, 青麟路",
+            "en": "Yan Tin Estate, Tsing Lun Road"
+          },
+          "lat": 22.414753,
+          "lng": 113.977394
+        },
+        {
+          "id": "004004",
+          "seq": 6,
+          "name": {
+            "tc": "菁田邨",
+            "sc": "菁田邨",
+            "en": "Ching Tin Estate"
+          },
+          "lat": 22.413091,
+          "lng": 113.972306
+        },
+        {
+          "id": "003767",
+          "seq": 7,
+          "name": {
+            "tc": "NOVO LAND, 欣寶路",
+            "sc": "NOVO LAND, 欣宝路",
+            "en": "NOVO LAND, Yan Po Road"
+          },
+          "lat": 22.411996,
+          "lng": 113.97035
+        },
+        {
+          "id": "003752",
+          "seq": 8,
+          "name": {
+            "tc": "和田邨",
+            "sc": "和田邨",
+            "en": "Wo Tin Estate"
+          },
+          "lat": 22.41284,
+          "lng": 113.968639
+        },
+        {
+          "id": "003264",
+          "seq": 9,
+          "name": {
+            "tc": "盈豐園, 鳴琴路",
+            "sc": "盈丰园, 鸣琴路",
+            "en": "Goodrich Garden, Ming Kum Road"
+          },
+          "lat": 22.408008,
+          "lng": 113.967272
+        },
+        {
+          "id": "003265",
+          "seq": 10,
+          "name": {
+            "tc": "良景邨, 田景路",
+            "sc": "良景邨, 田景路",
+            "en": "Leung King Estate, Tin King Road"
+          },
+          "lat": 22.406512,
+          "lng": 113.9638
+        },
+        {
+          "id": "003266",
+          "seq": 11,
+          "name": {
+            "tc": "田景邨田裕樓, 田景路",
+            "sc": "田景邨田裕楼, 田景路",
+            "en": "Tin Yue House Tin King Estate, Tin King Road"
+          },
+          "lat": 22.405399,
+          "lng": 113.964712
+        },
+        {
+          "id": "003267",
+          "seq": 12,
+          "name": {
+            "tc": "建生邨樂生樓, 青田路",
+            "sc": "建生邨乐生楼, 青田路",
+            "en": "Lok Sang House Kin Sang Estate, Tsing Tin Road"
+          },
+          "lat": 22.405113,
+          "lng": 113.96885
+        },
+        {
+          "id": "003213",
+          "seq": 13,
+          "name": {
+            "tc": "大興體育館, 震寰路",
+            "sc": "大兴体育馆, 震寰路",
+            "en": "Tai Hing Sports Centre, Tsun Wen Road"
+          },
+          "lat": 22.403734,
+          "lng": 113.972801
+        },
+        {
+          "id": "003214",
+          "seq": 14,
+          "name": {
+            "tc": "翠林花園, 石排頭路",
+            "sc": "翠林花园, 石排头路",
+            "en": "Greenland Garden, Shek Pai Tau Road"
+          },
+          "lat": 22.401076,
+          "lng": 113.971962
+        },
+        {
+          "id": "003201",
+          "seq": 15,
+          "name": {
+            "tc": "山景邨景麗樓, 石排頭路",
+            "sc": "山景邨景丽楼, 石排头路",
+            "en": "King Lai House Shan King Estate, Shek Pai Tau Road"
+          },
+          "lat": 22.400959,
+          "lng": 113.966457
+        }
+      ]
+    }
+  }
+}

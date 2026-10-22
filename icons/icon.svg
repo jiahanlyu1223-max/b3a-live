@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="B3A">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2444"/>
+      <stop offset="1" stop-color="#0d1220"/>
+    </linearGradient>
+    <linearGradient id="bus" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffc857"/>
+      <stop offset="1" stop-color="#f2a30c"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="#0d1220"/>
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+  <circle cx="256" cy="248" r="176" fill="#ffb020" opacity="0.10"/>
+  <rect x="104" y="120" width="304" height="274" rx="58" fill="url(#bus)"/>
+  <rect x="136" y="154" width="240" height="120" rx="28" fill="#0d1220"/>
+  <text x="256" y="238" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="2" fill="#ffb020">B3A</text>
+  <rect x="150" y="306" width="212" height="12" rx="6" fill="#0d1220" opacity="0.18"/>
+  <circle cx="172" cy="352" r="16" fill="#fff3d6"/>
+  <circle cx="340" cy="352" r="16" fill="#fff3d6"/>
+  <circle cx="172" cy="352" r="7" fill="#0d1220" opacity="0.35"/>
+  <circle cx="340" cy="352" r="7" fill="#0d1220" opacity="0.35"/>
+</svg>
