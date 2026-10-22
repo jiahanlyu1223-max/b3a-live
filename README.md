@@ -99,6 +99,14 @@ python3 scripts/sync_stops.py
 The Citybus feed lists inbound Fu Tai Shopping Centre twice; the script
 de-duplicates by stop ID.
 
+### Deploy
+
+The site is a static folder. This repository deploys with GitHub Pages from
+`main` / root; pushing to `main` triggers a rebuild.
+
+When changing any file listed in `SHELL` inside `sw.js`, bump its `VERSION`
+string so installed clients switch to the new app shell.
+
 ### Tests
 
 Serve the folder, then open
