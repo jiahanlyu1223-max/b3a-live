@@ -1,6 +1,6 @@
 /* B3A Live service worker: app shell cache + offline ETA snapshots. */
 
-const VERSION = "b3a-live-v2";
+const VERSION = "b3a-live-v3";
 const SHELL = [
   "./",
   "index.html",

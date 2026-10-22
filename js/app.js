@@ -420,10 +420,8 @@ async function boot() {
   }, TICK_MS);
 
   if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker.register("sw.js").catch((err) => {
-        console.warn("[B3A] Service worker registration failed:", err);
-      });
+    navigator.serviceWorker.register("sw.js").catch((err) => {
+      console.warn("[B3A] Service worker registration failed:", err);
     });
   }
 }
