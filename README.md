@@ -27,6 +27,8 @@ were counting to all along.
 A small, dependency-free web app for Citybus **B3A** (山景邨 ↔ 深圳灣口岸).
 Plain HTML5, CSS and ES modules — no framework, no build step, no API key.
 
+**Live:** <https://jiahanlyu1223-max.github.io/b3a-live/>
+
 ### Run it
 
 ```sh
